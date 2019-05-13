@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LapaChallenge</string>
+    <string name="title_activity_maps">Lapa Challenge</string>
+    <string name="local_service_stopped">Service Stop</string>
+    <string name="local_service_started">Service start</string>
+    <string name="local_service_label">Lapa Studio - Background</string>
+</resources>
