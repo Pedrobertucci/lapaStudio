@@ -34,7 +34,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SensorEventListene
     private lateinit var accelerometer: Sensor
     private lateinit var sensorManager: SensorManager
 
-    companion object {
+    companion object Factory {
         const val PERMISSION_REQUEST_ACCESS_FINE_LOCATION = 100
         const val TAG = "LAPA"
         var SENSOR_X: Float = 0.0f
@@ -44,7 +44,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SensorEventListene
         var latitude: Double?= 0.0
         var longitude: Double?= 0.0
         val LIST_LOCATION_USER: ArrayList<LocationUser> ?= ArrayList()
+        fun calculateDistance(latitude1: Double, longitude1: Double, latitude2: Double, longitude2: Double): MapsActivity = calculateDistance(latitude1, longitude1, latitude2, longitude2)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -194,7 +196,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, SensorEventListene
         SharedPreference(this).saveArrayList(LIST_LOCATION_USER, SharedPreference.LIST_LOCATION)
     }
 
-    private fun calculateDistance(latitude1: Double, longitude1: Double, latitude2: Double, longitude2: Double): Double? {
+    open fun calculateDistance(latitude1: Double, longitude1: Double, latitude2: Double, longitude2: Double): Double? {
             val theta = longitude1 - longitude2
             var dist = Math.sin(valueInPI(latitude1)!!) * Math.sin(valueInPI(latitude2)!!) +
                     Math.cos(valueInPI(latitude1)!!) * Math.cos(valueInPI(latitude2)!!) * Math.cos(valueInPI(theta)!!)
